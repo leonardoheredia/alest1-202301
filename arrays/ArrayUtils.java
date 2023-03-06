@@ -35,4 +35,17 @@ public class ArrayUtils {
         }
     }
 
+    public static int retornarSomaArrayInteiros(int[] arrayInteiros) {
+        int soma=0;
+        for (int i = 0; i < arrayInteiros.length; i++) {
+            soma = soma + arrayInteiros[i];
+        }
+        return soma;
+    }
+
+    public static int dobrarValor(int valorInteiro) {
+        int dobro = valorInteiro * 2;
+        return valorInteiro;
+    }
+
 }
