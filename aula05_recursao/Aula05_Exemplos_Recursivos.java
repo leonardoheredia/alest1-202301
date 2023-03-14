@@ -3,20 +3,32 @@ package aula05_recursao;
 public class Aula05_Exemplos_Recursivos {
 
     public static void main(String[] args) {
-        System.out.println("Fatorial");
-        int n = fatorial(4);
-        System.out.printf("%n%d%n", n);
+        //System.out.println("Fatorial");
+        //int n = fatorial(4);
+        //System.out.printf("%n%d%n", n);
+        int numero = fibonacci(30);
+        System.out.println(numero);
 
+
+        /*
         System.out.println("Fibonacci");
         for (int i = 0; i < 10; i++) {
             System.out.println(fibonacci(i) + " ");
         }
+        */
+
 
     }
 
     public static int fatorial(int n) {
-        if(n==0 || n==1) return 1;
-        else return n * fatorial(n - 1);
+        if(n==0 || n==1)  {
+            System.out.println("Chegou na condicao de parada. N = " + n);
+            return 1;
+        }
+        else {
+            System.out.println("Fazendo " + n + " * " + " fatorial(" +(n-1) + ")");
+            return n * fatorial(n - 1);
+        }
     }
 
     /*
