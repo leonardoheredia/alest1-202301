@@ -16,7 +16,7 @@ public class Exercicios {
         //escrever("que aula demais!!! nem quero saber da chamada!", 100);
         //System.out.println(fatorialNaoRecursivo(7));
         int[] arrayInteiros = {12,  90,  33,  40,  67,  89,  34, 77};
-        inverteArrayInteiro(arrayInteiros, arrayInteiros.length);
+        inverteArrayInteiroRec(arrayInteiros, arrayInteiros.length);
     }
     public static int somatorio(int numero) {
         System.out.println(numero);
@@ -53,6 +53,19 @@ public class Exercicios {
             arrayInteiros[i] = arrayInteiros[n - i -1];
             arrayInteiros[n - i -1] = temp;
         }
+    }
+
+    public static void inverteArrayInteiroRec(int[] arrayInteiros, int n) {
+        int tamanhoArray = arrayInteiros.length;
+        ArrayUtils.imprimir(arrayInteiros);
+        System.out.printf("Trocando %d por %d%n", arrayInteiros[n-1], arrayInteiros[tamanhoArray-n]);
+        int temp = arrayInteiros[n-1];
+        arrayInteiros[n-1] = arrayInteiros[tamanhoArray-n];
+        arrayInteiros[tamanhoArray-n] = temp;
+        n--;
+        if(tamanhoArray % 2 == 0 &&  n<=tamanhoArray / 2) return;
+        else if(tamanhoArray % 2 == 1 &&  n-1<=tamanhoArray / 2) return;
+        else inverteArrayInteiroRec(arrayInteiros, n);
     }
 
     //[12,  90,  33,  40,  67,  89,  34]
