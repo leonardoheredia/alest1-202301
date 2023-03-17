@@ -17,6 +17,13 @@ public class Exercicios {
         //System.out.println(fatorialNaoRecursivo(7));
         int[] arrayInteiros = {12,  90,  33,  40,  67,  89,  34, 77};
         inverteArrayInteiroRec(arrayInteiros, arrayInteiros.length);
+
+
+        int[] arrayInteiros2 = {12,  90,  33,  40,  67,  89,  34, 77};
+        System.out.println("Outra solucao");
+        ArrayUtils.imprimir(arrayInteiros2);
+        inverterArrayInteirosRecSegundaSolucao(arrayInteiros2, 0, arrayInteiros.length-1);
+        ArrayUtils.imprimir(arrayInteiros2);
     }
     public static int somatorio(int numero) {
         System.out.println(numero);
@@ -68,6 +75,16 @@ public class Exercicios {
         else inverteArrayInteiroRec(arrayInteiros, n);
     }
 
+    public static void inverterArrayInteirosRecSegundaSolucao(int[] arrayInteiros, int inicio, int fim) {
+        if(inicio<fim) {
+            int temp = arrayInteiros[inicio];
+            arrayInteiros[inicio] = arrayInteiros[fim];
+            arrayInteiros[fim] = temp;
+            inicio++;
+            fim--;
+            inverterArrayInteirosRecSegundaSolucao(arrayInteiros, inicio, fim);
+        }
+    }
     //[12,  90,  33,  40,  67,  89,  34]
     // 0    1    2     3    4    5    6
     // n = 6 --> 6 troca com o 0
