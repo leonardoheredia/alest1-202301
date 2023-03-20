@@ -48,4 +48,10 @@ public class ArrayUtils {
         return valorInteiro;
     }
 
+    public static void clonarArray(int[] arrayInteiroOrigem, int[] arrayInteiroDestino) {
+        for (int i = 0; i < arrayInteiroOrigem.length; i++) {
+            arrayInteiroDestino[i] = arrayInteiroOrigem[i];
+        }
+    }
+
 }
