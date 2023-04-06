@@ -1,6 +1,6 @@
 package aula11_listasduplamenteencadeadas;
 
-import aula10_listasencadeadas.ListaLinearSimplesmenteEncadeada;
+import aula10_respostas.ListaLinearSimplesmenteEncadeada;
 
 public class ListaLinearDuplamenteEncadeada {
 
@@ -11,9 +11,9 @@ public class ListaLinearDuplamenteEncadeada {
         private Nodo(String item) {
             this.item = item;
             this.proximo = null;
+            this.anterior = null;
         }
     }
-
     private int quantidade;
     private Nodo inicio;
     private Nodo fim;
@@ -21,9 +21,9 @@ public class ListaLinearDuplamenteEncadeada {
     public ListaLinearDuplamenteEncadeada() {
         this.inicio = new Nodo("");
         this.fim = new Nodo("");
-
         this.quantidade = 0;
     }
+
 
     public void adicionar(String item) {
         Nodo novoNodo = new Nodo(item);
@@ -41,6 +41,23 @@ public class ListaLinearDuplamenteEncadeada {
         novoNodo.anterior.proximo = novoNodo;
         quantidade++;
     }
+
+
+
+
+    public String buscar(int posicao) {
+        //implrmentar
+        return "";
+    }
+    public boolean adicionar(int posicao, String item) {
+        //implementar
+        return false;
+    }
+
+
+
+
+
 
     public String toString() {
         if(this.quantidade==0) return "[]";

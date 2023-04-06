@@ -38,8 +38,11 @@ public class ListaLinearSimplesmenteEncadeada {
         return true;
     }
     public String buscar(int posicao) {
-        //implementar
-        return "";
+        Nodo aux = this.inicio;
+        for (int i = 0; i <posicao ; i++) {
+            aux = aux.proximo;
+        }
+        return aux.item;
     }
     public int buscar(String chave) {
         int posicao = 0;
@@ -72,16 +75,22 @@ public class ListaLinearSimplesmenteEncadeada {
     }
     public void remover(String chave) {
         //implementar
+        int posicao = buscar(chave);
+        remover(posicao);
     }
     public boolean existe(String chave) {
         //implementar
-        return false;
+        int posicao = buscar(chave);
+        return (posicao>=0);
     }
     public boolean estaVazia() {
         return (this.quantidade==0);
     }
     public void esvaziarLista() {
         //implementar
+        this.inicio = null;
+        this.fim = null;
+        this.quantidade = 0;
     }
     @Override
     public String toString() {
