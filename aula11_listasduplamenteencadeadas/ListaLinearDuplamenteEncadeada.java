@@ -31,6 +31,8 @@ public class ListaLinearDuplamenteEncadeada {
         if(quantidade==0) {
             inicio.proximo = novoNodo;
             fim.anterior = novoNodo;
+            novoNodo.anterior = inicio;
+            novoNodo.proximo = fim;
             quantidade++;
             return;
         }
@@ -46,12 +48,26 @@ public class ListaLinearDuplamenteEncadeada {
 
 
     public String buscar(int posicao) {
-        //implrmentar
-        return "";
+        if(posicao>=quantidade) return "posicao invalida";
+        Nodo aux = this.inicio.proximo;
+        for (int i = 0; i <posicao ; i++) {
+            aux = aux.proximo;
+        }
+        return aux.item;
     }
     public boolean adicionar(int posicao, String item) {
-        //implementar
-        return false;
+
+        Nodo novoNodo = new Nodo(item);
+        Nodo nodoPosicao = this.inicio.proximo;
+        for (int i = 0; i <posicao ; i++) {
+            nodoPosicao = nodoPosicao.proximo;
+        }
+        novoNodo.proximo = nodoPosicao;
+        novoNodo.anterior = nodoPosicao.anterior;
+        nodoPosicao.anterior.proximo = novoNodo;
+        nodoPosicao.anterior = novoNodo;
+        quantidade++;
+        return true;
     }
 
 
@@ -75,5 +91,14 @@ public class ListaLinearDuplamenteEncadeada {
         ld.adicionar("mariana");
         ld.adicionar("tito");
         System.out.println(ld);
+
+        ld.adicionar(0, "tales");
+        System.out.println(ld);
+
+        System.out.println(ld.buscar(0));
+        System.out.println(ld.buscar(1));
+        System.out.println(ld.buscar(2));
+
+
     }
 }
