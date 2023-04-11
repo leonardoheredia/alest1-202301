@@ -27,27 +27,31 @@ public class FilaDinamica {
         }
         quantidade++;
     }
-
     public boolean estaVazia() {
         return this.quantidade==0;
     }
-
     public String desenfileirar() {
-        //IMPLEMENTAR
-        return "";
+        if(estaVazia()) return null;
+         String retorno = this.inicio.item;
+         this.inicio = this.inicio.proximo;
+         if(this.inicio!=null) this.inicio.anterior = null;
+         this.quantidade--;
+         return retorno;
     }
-
+    public int getQuantidade() {
+        return this.quantidade;
+    }
     @Override
     public String toString() {
+        if(estaVazia()) return "{}";
         String str="";
         for (Nodo n=this.inicio; n!=null; n=n.proximo) {
             str = str + " " + n.item + " ";
         }
         str = "FilaDinamica = {" + str + "}";
-        //str = str + " inicio = " + this.inicio + "   fim = " + this.fim + "  quantidade = " + this.quantidade + "  capacidade = " + this.capacidade;
+        str = str + " inicio = " + this.inicio.item + "   fim = " + this.fim.item + "  quantidade = " + this.quantidade;
         return str;
     }
-
     public static void main(String[] args) {
         FilaDinamica minhaFila = new FilaDinamica();
 
@@ -59,8 +63,8 @@ public class FilaDinamica {
         minhaFila.enfileirar("Leandro");
         System.out.println(minhaFila);
 
-        //minhaFila.desenfileirar();
-        //System.out.println(minhaFila);
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
 
         minhaFila.enfileirar("Tito");
         System.out.println(minhaFila);
@@ -70,5 +74,29 @@ public class FilaDinamica {
 
         minhaFila.enfileirar("Lucas");
         System.out.println(minhaFila);
+
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
+
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
+
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
+
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
+
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
+
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
+
+        System.out.println("Removendo o " + minhaFila.desenfileirar());
+        System.out.println(minhaFila);
+
+
+
     }
 }
