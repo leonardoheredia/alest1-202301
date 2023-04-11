@@ -24,6 +24,8 @@ public class PilhaEstatica {
     }
 
     public String desempilhar() {
+        if(this.estaVazia()) return null;
+
         String valor = this.itens[this.topo];
         this.itens[this.topo] = null;
         topo--;
@@ -32,18 +34,21 @@ public class PilhaEstatica {
     }
 
     public String verTopo() {
-        //retorna o topo sem desempilhar
-        //implementar
-        return "";
+        String retorno;
+        if(this.estaVazia()) retorno=null;
+        else retorno = this.itens[this.topo];
+        return retorno;
     }
 
     public boolean estaVazia() {
-        //implementar
-        return false;
+        return (quantidade==0);
     }
 
     public void limpar() {
-        //limpar a pilha
+        this.itens = new String[this.capacidade];
+        this.quantidade = 0;
+        this.topo = -1;
+        this.base = 0;
     }
 
     @Override
@@ -59,7 +64,7 @@ public class PilhaEstatica {
 
     public static void main(String[] args) {
         PilhaEstatica pilha = new PilhaEstatica();
-
+/*
         System.out.println(pilha);
         pilha.empilhar("Alexandre");
         pilha.empilhar("Leonardo");
@@ -79,6 +84,18 @@ public class PilhaEstatica {
         System.out.println(pilha);
 
         pilha.empilhar("Lucas");
+        System.out.println(pilha);
+
+ */
+        pilha.empilhar("rafaella");
+        System.out.println(pilha);
+        System.out.println(pilha.verTopo());
+        System.out.println(pilha);
+
+        pilha.desempilhar();
+        System.out.println(pilha);
+
+        pilha.desempilhar();
         System.out.println(pilha);
     }
 }
