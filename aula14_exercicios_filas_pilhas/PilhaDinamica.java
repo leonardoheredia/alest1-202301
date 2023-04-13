@@ -35,7 +35,7 @@ public class PilhaDinamica {
         if(estaVazia()) return null;
         String retorno = this.topo.item;
         this.topo = this.topo.anterior;
-        this.topo.proximo = null;
+        if(this.topo!=null) this.topo.proximo = null;
         this.quantidade--;
         return retorno;
     }

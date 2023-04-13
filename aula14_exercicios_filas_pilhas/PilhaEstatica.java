@@ -62,8 +62,12 @@ public class PilhaEstatica {
         return str;
     }
     /*metodo reverso deve reverter a ordem da fila, o ultimo se torna o primeiro e assim por diante ate o antigo primeiro virar o ultimo*/
-    public void reverso() {
-        //implementar
+    public void reverter() {
+        PilhaEstatica novaPilha = new PilhaEstatica();
+        for (int i = this.topo; i >= this.base ; i--) {
+            novaPilha.empilhar(this.itens[i]);
+        }
+        this.itens = novaPilha.itens;
     }
     /*retorna se o item está na fila ou nao*/
     public boolean estaNaPilha(String item) {
@@ -88,23 +92,12 @@ public class PilhaEstatica {
         pilha.empilhar("Alexandre");
         pilha.empilhar("Leonardo");
         pilha.empilhar("Tales");
-        System.out.println(pilha);
-
-        pilha.empilhar("Leandro");
-        System.out.println(pilha);
-
-        System.out.println("Desempilhou --> " + pilha.desempilhar());
-        System.out.println(pilha);
-
-        pilha.empilhar("Tito");
-        System.out.println(pilha);
-
         pilha.empilhar("Mariana");
+        pilha.empilhar("Joana");
         System.out.println(pilha);
 
-        pilha.empilhar("Lucas");
+        pilha.reverter();
         System.out.println(pilha);
-
 
 
     }
