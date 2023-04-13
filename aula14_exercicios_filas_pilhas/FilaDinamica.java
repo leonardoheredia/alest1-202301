@@ -54,9 +54,17 @@ public class FilaDinamica {
     }
 
     /*metodo reverso deve reverter a ordem da fila, o ultimo se torna o primeiro e assim por diante ate o antigo primeiro virar o ultimo*/
-    public void reverso() {
-        //implementar
+    public void reverter() {
+        FilaDinamica novaFila = new FilaDinamica();
+        Nodo aux = this.fim;
+        while (aux!=null) {
+            novaFila.enfileirar(aux.item);
+            aux = aux.anterior;
+        }
+        this.inicio = novaFila.inicio;
+        this.fim = novaFila.fim;
     }
+
     /*retorna se o item está na fila ou nao*/
     public boolean estaNaFila(String item) {
         return false;
@@ -78,43 +86,13 @@ public class FilaDinamica {
         minhaFila.enfileirar("Alexandre");
         minhaFila.enfileirar("Leonardo");
         minhaFila.enfileirar("Tales");
-        System.out.println(minhaFila);
-
-        minhaFila.enfileirar("Leandro");
-        System.out.println(minhaFila);
-
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
-
-        minhaFila.enfileirar("Tito");
-        System.out.println(minhaFila);
-
         minhaFila.enfileirar("Mariana");
+        minhaFila.enfileirar("Joana");
         System.out.println(minhaFila);
 
-        minhaFila.enfileirar("Lucas");
+        minhaFila.reverter();
         System.out.println(minhaFila);
 
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
-
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
-
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
-
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
-
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
-
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
-
-        System.out.println("Removendo o " + minhaFila.desenfileirar());
-        System.out.println(minhaFila);
 
 
 

@@ -78,8 +78,12 @@ public class FilaEstaticaComDuplicacao {
     }
 
     /*metodo reverso deve reverter a ordem da fila, o ultimo se torna o primeiro e assim por diante ate o antigo primeiro virar o ultimo*/
-    public void reverso() {
-        //implementar
+    public void reverter() {
+        FilaEstaticaComDuplicacao novaFila = new FilaEstaticaComDuplicacao();
+        for (int i = this.quantidade-1; i >=0 ; i--) {
+            novaFila.enfileirar(this.itens[i]);
+        }
+        this.itens = novaFila.itens;
     }
     /*retorna se o item está na fila ou nao*/
     public boolean estaNaFila(String item) {
@@ -105,42 +109,11 @@ public class FilaEstaticaComDuplicacao {
         minhaFila.enfileirar("Alexandre");
         minhaFila.enfileirar("Leonardo");
         minhaFila.enfileirar("Tales");
-        System.out.println(minhaFila);
-
-        minhaFila.enfileirar("Leandro");
-        System.out.println(minhaFila);
-
-        minhaFila.desenfileirar();
-        System.out.println(minhaFila);
-
-        minhaFila.enfileirar("Tito");
-        System.out.println(minhaFila);
-
         minhaFila.enfileirar("Mariana");
+        minhaFila.enfileirar("Joana");
         System.out.println(minhaFila);
 
-        minhaFila.desenfileirar();
-        System.out.println(minhaFila);
-
-        minhaFila.enfileirar("Lucas");
-        System.out.println(minhaFila);
-
-        minhaFila.enfileirar("Lucas2");
-        System.out.println(minhaFila);
-
-        minhaFila.desenfileirar();
-        minhaFila.desenfileirar();
-        minhaFila.desenfileirar();
-        minhaFila.desenfileirar();
-        minhaFila.desenfileirar();
-        minhaFila.desenfileirar();
-        minhaFila.desenfileirar();
-        System.out.println(minhaFila);
-
-        minhaFila.enfileirar("Lucas2");
-        System.out.println(minhaFila);
-
-        minhaFila.desenfileirar();
+        minhaFila.reverter();
         System.out.println(minhaFila);
     }
 }
