@@ -1,7 +1,10 @@
 package aula11_listasduplamenteencadeadas;
 
 import aula10_respostas.ListaLinearSimplesmenteEncadeada;
-
+/*
+* Implementação usando SENTINELAS
+* Nodo inicio e Nodo fim vazios
+ */
 public class ListaLinearDuplamenteEncadeada {
 
     private class Nodo {
@@ -69,10 +72,6 @@ public class ListaLinearDuplamenteEncadeada {
         quantidade++;
         return true;
     }
-
-
-
-
 
 
     public String toString() {
