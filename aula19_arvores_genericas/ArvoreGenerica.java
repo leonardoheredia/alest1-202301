@@ -1,37 +1,59 @@
 package aula19_arvores_genericas;
 
-import java.util.ArrayList;
-
 public class ArvoreGenerica {
-    public static final int DEFAULT_FILHOS = 5;
+
     class Nodo {
-        public Nodo pai;
         public String item;
+        public Nodo pai;
         public Nodo[] filhos;
         public int numeroFilhos;
         public Nodo(String item) {
-            this.pai = null;
-            this.filhos = new Nodo[DEFAULT_FILHOS];
             this.item = item;
-            this.numeroFilhos=0;
+            this.pai = null;
+            this.filhos = new Nodo[100];
+            this.numeroFilhos = 0;
         }
-        public void adicionarFilho(Nodo filho) {
-            filho.pai = this;
-            filhos[numeroFilhos] = filho;
+        public void adicionarFilho(Nodo nodoFilho) {
+            nodoFilho.pai = this;
+            this.filhos[numeroFilhos] = nodoFilho;
             numeroFilhos++;
         }
-    }
 
+    }
     private Nodo raiz;
     private int tamanho;
-
     public ArvoreGenerica() {
-        this.tamanho = 0;
         this.raiz = null;
+        this.tamanho = 0;
     }
+
+    public void percorrerPreOrdem() {
+        System.out.println("");
+        percorrerPreOrdemRecursivo(raiz);
+    }
+    public void percorrerPreOrdemRecursivo(Nodo n) {
+        System.out.printf(n.item + " ");;
+        for (int i = 0; i < n.numeroFilhos ; i++) {
+            percorrerPreOrdemRecursivo(n.filhos[i]);
+        }
+    }
+
+    public void percorrerPosOrdem() {
+        System.out.println("");
+        percorrerPosOrdemRecursivo(raiz);
+    }
+    public void percorrerPosOrdemRecursivo(Nodo n) {
+        for (int i = 0; i < n.numeroFilhos ; i++) {
+            percorrerPosOrdemRecursivo(n.filhos[i]);
+        }
+        System.out.printf(n.item + " ");
+    }
+
     public void adicionarNodo(String item, String pai) {
         Nodo novoNodo = new Nodo(item);
-        if(tamanho == 0) raiz = novoNodo;
+        if(tamanho==0) {
+            this.raiz = novoNodo;
+        }
         else {
             Nodo nodoPai = procuraNodoPorValor(pai, raiz);
             nodoPai.adicionarFilho(novoNodo);
@@ -51,31 +73,26 @@ public class ArvoreGenerica {
         return null;
     }
 
-    public void listaNodosItens() {
-        Nodo aux = this.raiz;
-        percorreArvorePreOrdemRecursiva(aux);
-
-    }
-    private void percorreArvorePreOrdemRecursiva(Nodo aux) {
-        if(aux == null) return;
-        else {
-            System.out.println(aux.item);
-            for (int i = 0; i < aux.numeroFilhos; i++) {
-                percorreArvorePreOrdemRecursiva(aux.filhos[i]);
-            }
-        }
-    }
-
     public static void main(String[] args) {
-        ArvoreGenerica ag = new ArvoreGenerica();
-        ag.adicionarNodo("A", null);
-        ag.adicionarNodo("B", "A");
-        ag.adicionarNodo("C", "A");
-        ag.adicionarNodo("D", "A");
-        ag.adicionarNodo("E", "C");
-        ag.adicionarNodo("F", "E");
-        ag.adicionarNodo("G", "B");
-        ag.listaNodosItens();
+        ArvoreGenerica g = new ArvoreGenerica();
+        g.adicionarNodo("A", null);
+        g.adicionarNodo("B", "A");
+        g.adicionarNodo("C", "A");
+        g.adicionarNodo("D", "A");
+        g.adicionarNodo("J", "B");
+        g.adicionarNodo("P", "B");
+        g.adicionarNodo("Y", "P");
+        g.adicionarNodo("K", "D");
+        g.adicionarNodo("O", "K");
+        g.adicionarNodo("F", "O");
+        g.adicionarNodo("M", "D");
+        g.adicionarNodo("Z", "D");
+
+        g.percorrerPreOrdem();
+
+        g.percorrerPosOrdem();
+
     }
+
 
 }
