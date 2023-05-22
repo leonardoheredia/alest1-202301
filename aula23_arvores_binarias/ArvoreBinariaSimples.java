@@ -2,9 +2,9 @@ package aula23_arvores_binarias;
 public class ArvoreBinariaSimples {
 
     public String item;
-    public ArvoreBinariaSimples esquerda;
-    public ArvoreBinariaSimples direita;
-    public ArvoreBinariaSimples pai;
+    private ArvoreBinariaSimples esquerda;
+    private ArvoreBinariaSimples direita;
+    private ArvoreBinariaSimples pai;
 
     public ArvoreBinariaSimples(String item) {
         this.item = item;
@@ -26,15 +26,35 @@ public class ArvoreBinariaSimples {
     }
     private void percorrerPreOrdemRecursivo(ArvoreBinariaSimples arvore) {
         if(arvore!=null) {
+            System.out.println(arvore.item);
             percorrerPreOrdemRecursivo(arvore.esquerda);
             percorrerPreOrdemRecursivo(arvore.direita);
         }
     }
 
+    public ArvoreBinariaSimples obterSubarvoreEsquerda() { return this.esquerda;}
+    public ArvoreBinariaSimples obterSubarvoreDireita() { return this.direita;}
     public void imprimir() {
         System.out.println(this.item);
     }
 
+    public int obterTamanho() {
+        return 0;
+    }
+
+    public int obterAltura() {
+        return 0;
+    }
+
+    public void removerSubArvoreEsquerda() {
+        this.esquerda.pai = null;
+        this.esquerda = null;
+    }
+
+    public void removerSubArvoreDireita() {
+        this.direita.pai = null;
+        this.direita = null;
+    }
     public static void main(String[] args) {
         ArvoreBinariaSimples a = new ArvoreBinariaSimples("A");
         ArvoreBinariaSimples b = new ArvoreBinariaSimples("B");
@@ -45,7 +65,12 @@ public class ArvoreBinariaSimples {
         a.adicionarSubArvoreDireita(c);
         b.adicionarSubArvoreEsquerda(d);
 
+        c.adicionarSubArvoreEsquerda(new ArvoreBinariaSimples("K"));
+        c.adicionarSubArvoreDireita(new ArvoreBinariaSimples("J"));
+        c.obterSubarvoreEsquerda().adicionarSubArvoreEsquerda(new ArvoreBinariaSimples("L"));
+        c.obterSubarvoreEsquerda().adicionarSubArvoreDireita(new ArvoreBinariaSimples("M"));
 
+        a.percorrerPreOrdem();
 
     }
 }
