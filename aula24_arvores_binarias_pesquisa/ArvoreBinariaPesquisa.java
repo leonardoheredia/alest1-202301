@@ -1,6 +1,8 @@
 package aula24_arvores_binarias_pesquisa;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class ArvoreBinariaPesquisa {
     class Nodo {
@@ -48,7 +50,7 @@ public class ArvoreBinariaPesquisa {
     }
     public int obterTamanho() {
         //implementar
-        return 0;
+        return tamanho;
     }
     public void limpar(){
         //limpa a arvore
@@ -65,14 +67,21 @@ public class ArvoreBinariaPesquisa {
         return 0;
     }
     public int obterPai(int item) {
-        //retorna o pai do elemento item
-        //implementar
-        return 0;
+        Nodo filho = buscarNodo(item);
+        if(filho!=null && filho.pai!=null) {
+            return filho.pai.item;
+        }
+        return -1;
     }
     public ArrayList<Integer> elementosPreOrdem() {
-        //retorna um array list com os elementos (valores inteiros) em pre-ordem
-        //implementar
-        return null;
+        ArrayList<Integer> elementos = new ArrayList<>();
+        preOrdemRecursivo(this.raiz, elementos);
+        return elementos;
+    }
+    private void preOrdemRecursivo(Nodo pai, ArrayList<Integer> elementos) {
+        elementos.add(pai.item);
+        if(pai.esquerda!=null) preOrdemRecursivo(pai.esquerda, elementos);
+        if(pai.direita!=null) preOrdemRecursivo(pai.direita, elementos);
     }
     public ArrayList<Integer> elementosCentralOrdem() {
         //retorna um array list com os elementos (valores inteiros) em ordem central
@@ -85,33 +94,60 @@ public class ArvoreBinariaPesquisa {
         return null;
     }
     public ArrayList<Integer> elementosLargura() {
-        //retorna um array list com os elementos (valores inteiros) em um caminhamento em largura
-        //implementar
-        return null;
+        ArrayList<Integer> elementos = new ArrayList<>();
+        Queue<Nodo> fila = new LinkedList<>();
+        fila.add(this.raiz);
+        while(!fila.isEmpty()) {
+            Nodo aux = fila.poll();
+            elementos.add(aux.item);
+            if(aux.esquerda!=null) fila.add(aux.esquerda);
+            if(aux.direita!=null) fila.add(aux.direita);
+        }
+        return elementos;
     }
     public int obterNivel(int item) {
         //retorna o nivel do elemeto item, caso nao existe retorna -1
         //implementar
         return 0;
     }
+    public Nodo buscarNodo(int item) {
+        //retorna o nodo que contem o item
+        Nodo aux = this.raiz;
+        while(aux!=null) {
+            if(aux.item==item) return aux;
+            if(item<aux.item) aux = aux.esquerda;
+            else aux = aux.direita;
+        }
+        return null;
+    }
     public boolean existe(int item) {
-        //retorna true ou false e existe o valor item na arvore
-        //implementar
-        return false;
+        return (buscarNodo(item)!=null);
     }
     public int altura() {
-        //retorna altura da arvore
-        return 0;
+        int altura = alturaRecursiva(this.raiz, -1,-1);
+        return altura;
+    }
+    public int alturaRecursiva(Nodo nodo, int altura_esq, int altura_dir) {
+        if(nodo==null) return Math.max(altura_esq, altura_dir);
+        else {
+            System.out.println("Visitei o " + nodo.item);
+            if(nodo.esquerda!=null) altura_esq = alturaRecursiva(nodo.esquerda, altura_esq + 1, altura_dir);
+            if(nodo.direita!=null) altura_dir = alturaRecursiva(nodo.direita, altura_esq, altura_dir+1);
+        }
+        return Math.max(altura_esq, altura_dir);
     }
     public boolean ehInterno(int item) {
-        //retorna true se o elemento esta em um nodo interno
-        //implementar
-        return false;
+        Nodo nodo = buscarNodo(item);
+        if(nodo==null) return false; //soh vai acontecer se o nodo nao existir na arvore
+        if(nodo.esquerda!=null || nodo.direita!=null) return true;
+        else return false;
     }
     public boolean ehExterno(int item) {
         //retorna true se o elemento esta em um nodo interno
-        //implementar
-        return false;
+        Nodo nodo = buscarNodo(item);
+        if(nodo==null) return false;
+        if(nodo.direita==null && nodo.esquerda==null) return true;
+        else return false;
     }
     public void remover(int item) {
         //remove o elemento da arvore se ele existir
@@ -130,4 +166,34 @@ public class ArvoreBinariaPesquisa {
         for (int i = 5; i < nivel; i++) System.out.print(" ");
         imprimirArvoreRecusivamente(raiz.esquerda, nivel);
     }
+    public void adicionarNaoRecursivo(int item) {
+        Nodo novoNodo = new Nodo(item);
+        if(this.tamanho==0) this.raiz = novoNodo;
+        else {
+            Nodo aux = this.raiz;
+            boolean inseriu = false;
+            while(!inseriu) {
+                if(novoNodo.item < aux.item) {
+                    if(aux.esquerda==null) {
+                        aux.esquerda = novoNodo;
+                        inseriu = true;
+                    }
+                    else aux = aux.esquerda;
+                }
+                else if (novoNodo.item > aux.item) {
+                    if(aux.direita==null)  {
+                        aux.direita = novoNodo;
+                        inseriu = true;
+                    }
+                    else aux = aux.direita;
+                }
+                else {
+                    System.out.println("Item já existe.");
+                    return;
+                }
+            }
+        }
+        this.tamanho++;
+    }
+
 }
